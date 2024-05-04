@@ -1,31 +1,22 @@
 package ThreadsOneceAgain;
 
-import IntegralThread.Integral;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-        long start = System.nanoTime();
-        IntegralThread.Integral thread = new IntegralThread.Integral(0, 1);
-        thread.run();
-        long end = System.nanoTime();
-        System.out.println(thread.getSum());
-        System.out.println("time if there's only one thread: " + (end - start));
-        //thread.join();
-
+        Summator mainIntegral = new Summator();
         double a = 0;
         double b = 1;
         int threads = Runtime.getRuntime().availableProcessors();
         double dist = (b - a) / threads;
-        List<IntegralThread.Integral> integralshehe = new ArrayList<>();
+        List<IntegralNew> integralshehe = new ArrayList<>();
 
         for (int i = 0; i < threads; i++) {
-            IntegralThread.Integral threadd = new IntegralThread.Integral(a + dist * i, a + dist * (i + 1));
+            IntegralNew threadd = new IntegralNew(a + dist * i, a + dist * (i + 1), mainIntegral);
             integralshehe.add(threadd);
         }
-        start = System.nanoTime();
+        long start = System.nanoTime();
         integralshehe.forEach(Thread::start);
         integralshehe.forEach(thr -> {
             try {
@@ -34,9 +25,10 @@ public class Main {
                 throw new RuntimeException(e);
             }
         });
-        double sum = integralshehe.stream().mapToDouble(Integral::getSum).sum();
+        double sum = integralshehe.stream().mapToDouble(IntegralNew::getSum).sum();
 
-        end = System.nanoTime();
+        long end = System.nanoTime();
+        System.out.println(mainIntegral.getSum());
         System.out.println(sum);
         System.out.println("time if there're 12 threads: " + (end - start));
         System.out.println();

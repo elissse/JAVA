@@ -3,7 +3,7 @@ package ParallelThreadsIGuess;
 public class PrintTask implements Runnable {
     private String data;
 
-    PrintTask(String data) {
+    public PrintTask(String data) {
         this.data = data;
     }
 

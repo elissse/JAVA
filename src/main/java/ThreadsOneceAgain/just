@@ -2,3 +2,13 @@ synchronised
 public synchronised void fung() {
 
 }
+
+synchronized (syncObj) {
+// at the same time here can be only one thread
+}
+
+public void func() {
+    synchronised (this){
+
+    }
+}

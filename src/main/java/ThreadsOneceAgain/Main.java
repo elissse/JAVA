@@ -28,8 +28,7 @@ public class Main {
         double sum = integralshehe.stream().mapToDouble(IntegralNew::getSum).sum();
 
         long end = System.nanoTime();
-        System.out.println(mainIntegral.getSum());
-        System.out.println(sum);
+        System.out.println(mainIntegral.getSumma());
         System.out.println("time if there're 12 threads: " + (end - start));
         System.out.println();
     }

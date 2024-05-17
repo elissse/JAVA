@@ -9,7 +9,7 @@ public class Summator implements ISummator {
         }
     }
 
-    public double getSum() {
+    public double getSumma() {
         return summa;
     }
 }

@@ -26,10 +26,9 @@ public class IntegralNew extends Thread {
     @Override
     public void run() {
         double delta = (b - a) / N;
-        double summ =0 ;
+        double summ = 0 ;
         for (int i = 0; i < N; i++) {
             summ += (function(a + delta * i) + function(a + delta * (i + 1))) / 2 * delta;
-
         }
         summator.addSum(summ);
     }
